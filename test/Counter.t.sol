@@ -8,17 +8,20 @@ contract CounterTest is Test {
     Counter public counter;
 
     function setUp() public {
-        counter = new Counter();
-        counter.setNumber(0);
+        counter = new Counter(10);
     }
 
     function testIncrement() public {
         counter.increment();
-        assertEq(counter.number(), 1);
+        uint value = counter.getcount();
+        assertEq(counter.count(), 11);
+        emit log_named_uint("The count is:", value);
     }
 
-    function testSetNumber(uint256 x) public {
-        counter.setNumber(x);
-        assertEq(counter.number(), x);
+    function testdecrement() public {
+        counter.decrement();
+        uint value = counter.getcount();
+        assertEq(counter.count(), 9);
+        emit log_named_uint("The count is:", value);
     }
 }
